@@ -1,0 +1,134 @@
+array queue adt
+Algorithm: Linear Queue Operations Using Array
+
+1. Creation of Queue
+
+Step 1: Include all required header files and define a constant SIZE.
+
+Step 2: Declare all the user-defined functions used in the queue implementation.
+
+Step 3: Create a one-dimensional array queue[SIZE].
+
+Step 4: Declare and initialize two integer variables front = -1, rear = -1.
+
+Step 5: In the main() function, display a menu and call respective functions for user-selected operations.
+
+
+2. enQueue(value) – Inserting into the Queue
+
+Step 1: Check if the queue is full (rear == SIZE - 1).
+
+Step 2: If full, display: "Queue is FULL. Insertion is not possible" and exit function.
+
+Step 3: If not full, increment rear (rear++) and insert value: queue[rear] = value.
+
+Step 4: If front == -1, set front = 0.
+
+3. deQueue() – Deleting from the Queue
+
+Step 1: Check if queue is empty (front > rear or front == rear == -1).
+
+Step 2: If empty, display: "Queue is EMPTY! Deletion is not possible!" and exit function.
+
+Step 3: If not empty:
+
+Display queue[front] as the deleted element.
+
+Increment front (front++).
+
+If front > rear, reset front = rear = -1.
+
+4. display() – Displaying Queue Elements
+
+Step 1: Check if queue is empty (front > rear or front == rear == -1).
+
+Step 2: If empty, display: "Queue is EMPTY" and exit function.
+
+Step 3: If not empty:
+
+Set i = front.
+
+Loop from i to rear and display queue[i].
+
+program:
+#include <stdio.h>
+#define SIZE 100
+
+int queue[SIZE];
+int front = -1, rear = -1;
+
+// Function to insert an element into the queue
+void enQueue(int value) {
+    if (rear == SIZE - 1) {
+        printf("Queue is FULL. Insertion is not possible.\n");
+        return;
+    } else {
+        if (front == -1)
+            front = 0;
+        rear++;
+        queue[rear] = value;
+        printf("Inserted -> %d\n", value);
+    }
+}
+
+// Function to delete an element from the queue
+void deQueue() {
+    if (front == -1 || front > rear) {
+        printf("Queue is EMPTY! Deletion is not possible!\n");
+        return;
+    } else {
+        printf("Deleted -> %d\n", queue[front]);
+        front++;
+        if (front > rear)
+            front = rear = -1;
+    }
+}
+
+// Function to display the queue elements
+void display() {
+    if (front == -1 || front > rear) {
+        printf("Queue is EMPTY.\n");
+        return;
+    } else {
+        printf("Queue elements: ");
+        for (int i = front; i <= rear; i++) {
+            printf("%d ", queue[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\nQueue Menu:\n");
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Display\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+        case 1:
+            printf("Enter value to insert: ");
+            scanf("%d", &value);
+            enQueue(value);
+            break;
+        case 2:
+            deQueue();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            printf("Exiting program...\n");
+            return 0;
+        default:
+            printf("Invalid choice! Try again.\n");
+        }
+    }
+
+    return 0;
+}
