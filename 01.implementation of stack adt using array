@@ -1,0 +1,90 @@
+Algorithm: Stack Operations using Array
+1. Creation of Stack
+1. Include necessary header files and define a constant SIZE.
+2. Declare all stack operation functions.
+3. Create a one-dimensional array: int stack[SIZE].
+4. Initialize an integer variable top = -1.
+5. In main(), show a menu and use appropriate function calls for stack operations.
+2. push(int value) — Inserting a Value
+1. Check if the stack is full: if(top == SIZE - 1).
+2. If full, print "Stack is FULL. Insertion is not possible." and exit function.
+3. If not, increment top and assign: stack[top] = value.
+3. pop() — Deleting a Value
+1. Check if the stack is empty: if(top == -1).
+2. If empty, print "Stack is EMPTY. Deletion is not possible." and exit function.
+3. If not, delete stack[top] and decrement top.
+4. display() — Display Stack Elements
+1. Check if the stack is empty: if(top == -1).
+2. If empty, print "Stack is EMPTY."
+3. If not, start from i = top and print each stack[i] down to i = 0.
+
+Program
+
+#include <stdio.h>
+
+#define SIZE 5
+
+int stack[SIZE];
+int top = -1;
+
+// Push function
+void push(int value) {
+    if (top == SIZE - 1) {
+        printf("Stack is full\n");
+    } else {
+        top++;
+        stack[top] = value;
+        printf("Element pushed: %d\n", value);
+    }
+}
+
+// Pop function
+void pop() {
+    if (top == -1) {
+        printf("Stack is empty\n");
+    } else {
+        printf("Element popped: %d\n", stack[top]);
+        top--;
+    }
+}
+
+// Display function
+void display() {
+    if (top == -1) {
+        printf("Stack is empty\n");
+    } else {
+        printf("Stack elements:\n");
+        for (int i = top; i >= 0; i--) {
+            printf("%d\n", stack[i]);
+        }
+    }
+}
+
+int main() {
+    int choice, value;
+
+    while (1) {
+        printf("\n1. PUSH\n2. POP\n3. DISPLAY\n4. EXIT\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter the value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("Exiting...\n");
+                return 0;
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+}
