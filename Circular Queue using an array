@@ -1,0 +1,153 @@
+algorith
+Here's the algorithm for implementing a Circular Queue using an array, as described in your lab journal:
+Algorithm: Circular Queue using Array
+
+Initialization
+
+1. Define constant SIZE for the array size.
+
+
+2. Create array cQueue[SIZE].
+
+
+3. Initialize front = -1 and rear = -1.
+
+Function: enQueue(value)
+
+1. Check for Queue Full Condition:
+If ((rear == SIZE-1 && front == 0) || (front == rear+1))
+→ Queue is full → Display “Queue is FULL”.
+
+
+2. If not full:
+
+If rear == SIZE - 1 && front != 0
+→ Set rear = -1.
+
+Increment rear.
+
+Assign cQueue[rear] = value.
+
+If front == -1, set front = 0.
+
+Function: deQueue()
+
+1. Check for Queue Empty:
+If (front == -1 && rear == -1)
+→ Display “Queue is EMPTY”.
+
+2. If not empty:
+
+Display cQueue[front] as deleted.
+
+Increment front.
+
+If front == SIZE, set front = 0.
+
+If (front - 1 == rear), then reset front = rear = -1.
+
+Function: display()
+
+1. Check for Empty Queue:
+If front == -1 → Display “Queue is EMPTY”.
+
+
+2. Display Elements:
+
+If front <= rear, loop from i = front to rear, print cQueue[i].
+
+Else:
+
+Loop from i = front to SIZE - 1, print cQueue[i].
+
+Then loop from i = 0 to rear, print cQueue[i].
+
+Let me know if you want the code or viva questions based on this experiment too!
+
+program 
+#include <stdio.h>
+#define SIZE 5
+
+int cQueue[SIZE];
+int front = -1, rear = -1;
+
+void enQueue(int value) {
+    if ((front == 0 && rear == SIZE - 1) || (rear == (front - 1) % (SIZE - 1))) {
+        printf("Queue is FULL\n");
+        return;
+    } else if (front == -1) { // First element
+        front = rear = 0;
+    } else if (rear == SIZE - 1 && front != 0) {
+        rear = 0;
+    } else {
+        rear++;
+    }
+    cQueue[rear] = value;
+    printf("Inserted %d\n", value);
+}
+
+void deQueue() {
+    if (front == -1) {
+        printf("Queue is EMPTY\n");
+        return;
+    }
+
+    printf("Deleted %d\n", cQueue[front]);
+
+    if (front == rear) {
+        front = rear = -1;
+    } else if (front == SIZE - 1) {
+        front = 0;
+    } else {
+        front++;
+    }
+}
+
+void display() {
+    if (front == -1) {
+        printf("Queue is EMPTY\n");
+        return;
+    }
+
+    printf("Circular Queue: ");
+    if (rear >= front) {
+        for (int i = front; i <= rear; i++)
+            printf("%d ", cQueue[i]);
+    } else {
+        for (int i = front; i < SIZE; i++)
+            printf("%d ", cQueue[i]);
+        for (int i = 0; i <= rear; i++)
+            printf("%d ", cQueue[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int choice, value;
+    do {
+        printf("\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+        case 1:
+            printf("Enter the value to insert: ");
+            scanf("%d", &value);
+            enQueue(value);
+            break;
+        case 2:
+            deQueue();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            printf("Exiting...\n");
+            break;
+        default:
+            printf("Invalid choice!\n");
+        }
+    } while (choice != 4);
+
+    return 0;
+}
