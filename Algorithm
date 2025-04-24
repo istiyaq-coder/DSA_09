@@ -1,0 +1,122 @@
+Expt 2: Stack ADT Using Array
+Algorithm: Stack Operations Using Array
+Creation of Stack
+Include required header files like stdio.h, stdlib.h and define #define SIZE 100.
+Declare a stack array: int stack[SIZE]; and an integer variable top = -1.
+Declare functions for operations: void push(int), void pop(), void peek(), void display().
+In main(), create a menu with switch-case to perform the stack operations.
+push(int value)
+Check if the stack is full using if (top == SIZE - 1).
+If full, print: "Stack Overflow. Cannot push value."
+Else, increment top and assign value to stack[top].
+pop()
+Check if the stack is empty using if (top == -1).
+If empty, print: "Stack Underflow. Cannot pop."
+Else, print stack[top] and decrement top.
+peek()
+If stack is empty, print message.
+Else, display stack[top].
+display()
+If top == -1, display "Stack is EMPTY".
+Else, use a loop to display elements from top to 0.
+Expt 3: Infix to Postfix Conversion Using Stack
+Algorithm: Infix to Postfix Conversion
+Initialization
+Include necessary headers.
+Define a function int precedence(char) to return precedence of operators.
+Define helper functions like isOperator(char).
+infixToPostfix(char infix[], char postfix[])
+Push '(' to stack, and append ')' to the end of infix expression.
+For each character:
+- If it is an operand, append it to postfix.
+- If '(', push to stack.
+- If operator, pop higher precedence operators from stack, then push current.
+- If ')', pop till '(', discard '('
+Postfix expression is constructed.
+Expt 4: Evaluation of Postfix Expression
+Algorithm: Evaluate Postfix Expression Using Stack
+evaluatePostfix(char postfix[])
+For each character in postfix:
+- If operand, convert to int and push to stack.
+- If operator, pop two elements, perform operation, push result.
+Final result is on top of stack.
+Expt 6: Circular Queue Using Array
+Algorithm: Circular Queue Operations Using Array
+Initialization
+Define a queue array of size SIZE.
+Initialize front = -1 and rear = -1.
+enQueue(int value)
+Check if queue is full using condition: (front == 0 && rear == SIZE - 1) || (rear + 1) % SIZE == front.
+If full, print "Queue is FULL".
+Else, update rear = (rear + 1) % SIZE, insert value, if front == -1 then front = 0.
+deQueue()
+If queue is empty (front == -1), display "Queue is EMPTY".
+Else, display and remove element at front.
+If front == rear, reset both to -1. Else, front = (front + 1) % SIZE.
+display()
+If empty, display "Queue is EMPTY".
+Else, loop from front to rear using modulo and print elements.
+Expt 7: Singly Linked List (Beginning & End Operations)
+Algorithm: Singly Linked List Insertion/Deletion
+insertAtBeginning(int value)
+Allocate memory for new node and assign value.
+Set newNode->next = head and head = newNode.
+deleteAtBeginning()
+If head == NULL, display "List is Empty".
+Else, move head to head->next, free old head.
+insertAtEnd(int value)
+Create new node.
+If list is empty, head = new node.
+Else, traverse to end and link new node.
+deleteAtEnd()
+If empty, display message.
+Else, traverse to second last node, free last, set next = NULL.
+Expt 8: Stack ADT Using Linked List
+Algorithm: Stack Using Singly Linked List
+push(int value)
+Create a node.
+Set newNode->next = top, update top = newNode.
+pop()
+If top == NULL, display "Stack is EMPTY".
+Else, display top element, move top = top->next, free memory.
+Expt 9: Queue ADT Using Linked List
+Algorithm: Queue Using Singly Linked List
+enQueue(int value)
+Create new node.
+If rear == NULL, set both front and rear to new node.
+Else, link rear->next to node, rear = node.
+deQueue()
+If front == NULL, display "Queue EMPTY".
+Else, display and delete front node, move front to next node.
+If front == NULL, set rear = NULL.
+
+
+5. Algorithm: Queue Operations Using Array
+
+1. Creation of Queue
+Step 1: Include all required header files and define a constant SIZE.
+Step 2: Declare all the user-defined functions required for the queue operations: enQueue(), deQueue(), and display().
+Step 3: Create a one-dimensional array: queue[SIZE].
+Step 4: Declare and initialize two integer variables: front = -1, rear = -1.
+Step 5: In the main() function, display a menu for operations and call the corresponding function based on user input.
+
+2. enQueue(value) – Inserting an Element
+Step 1: Check if the queue is full by evaluating: rear == SIZE - 1.
+Step 2: If full, display: "Queue is FULL. Insertion not possible." and return.
+Step 3: If not full, increment rear (i.e., rear++) and assign the value: queue[rear] = value.
+Step 4: If front == -1, set front = 0.
+
+3. deQueue() – Deleting an Element
+Step 1: Check if the queue is empty: front == -1 || front > rear.
+Step 2: If empty, display: "Queue is EMPTY! Deletion not possible!" and return.
+Step 3: If not empty:
+Display queue[front] as the deleted element.
+Increment front (i.e., front++).
+If front > rear, reset both: front = rear = -1.
+
+4. display() – Displaying the Queue
+Step 1: Check if the queue is empty: front == -1 || front > rear.
+Step 2: If empty, display: "Queue is EMPTY." and return.
+Step 3: If not empty:
+Initialize i = front.
+Loop through the queue from front to rear and display queue[i]
